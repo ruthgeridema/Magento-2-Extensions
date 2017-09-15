@@ -7,7 +7,6 @@ use Magento\Reports\Block\Product\Viewed;
 
 class CustomerTab extends \Magento\Framework\View\Element\Template
 {
-
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */

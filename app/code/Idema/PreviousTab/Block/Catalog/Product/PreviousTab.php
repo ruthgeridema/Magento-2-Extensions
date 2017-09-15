@@ -29,7 +29,6 @@ class PreviousTab extends \Magento\Framework\View\Element\Template
      */
     protected $abstractProduct;
 
-
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         array $data = [],
