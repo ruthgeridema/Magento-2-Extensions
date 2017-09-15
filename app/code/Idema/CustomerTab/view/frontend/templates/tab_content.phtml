@@ -1,0 +1,34 @@
+<table>
+    <tr>
+        <th><?php /* @escapeNotVerified */ echo __('Name') ?></th>
+        <th><?php /* @escapeNotVerified */ echo __('SKU') ?></th>
+        <th><?php /* @escapeNotVerified */ echo __('Price') ?></th>
+        <th>&nbsp;</th>
+    </tr>
+
+    <?php foreach($block->getPreviousViewedProducts() as $product):
+
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+    $addToCartUrl =  $listBlock->getAddToCartUrl($product);
+    ?>
+
+    <tr>
+            <td><a href="<?=$product->getProductUrl() ?>"><?=$product->getName() ?></a></td>
+            <td><?=$product->getSku() ?></td>
+            <td><?=$this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(),true,false) ?></td>
+            <td>
+                <form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post">
+                    <?php echo $block->getBlockHtml('formkey')?>
+                    <button type="submit"
+                            title="Add to Cart"
+                            class="action tocart primary">
+                        <span>Add to Cart</span>
+                    </button>
+                </form>
+            </td>
+    </tr>
+<?php endforeach; ?>
+</table>
+
+

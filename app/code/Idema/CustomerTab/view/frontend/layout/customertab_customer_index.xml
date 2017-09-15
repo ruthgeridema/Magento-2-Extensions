@@ -1,0 +1,17 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <head>
+        <title>Previous viewed products</title>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Previous viewed products</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Idema\CustomerTab\Block\CustomerTab" name="customertab" cacheable="false" template="Idema_CustomerTab::tab_content.phtml">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

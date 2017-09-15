@@ -1,0 +1,5 @@
+@media all and (min-width: 1024px), print {
+    .product-item.previous-tab {
+        width: 25%!important;
+    }
+}
