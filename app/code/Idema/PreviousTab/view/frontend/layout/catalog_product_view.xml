@@ -5,7 +5,7 @@
     </head>
     <body>
         <referenceBlock name="product.info.details">
-            <block name="idema_previoustab.previoustab" class="Idema\PreviousTab\Block\Catalog\Product\PreviousTab" after="reviews.tab" cacheable="false" template="Idema_PreviousTab::catalog/product/previous_tab.phtml" group="detailed_info">
+            <block name="idema_previoustab.previoustab" class="Idema\PreviousTab\Block\Catalog\Product\PreviousTab" after="reviews.tab" cacheable="false"  template="Idema_PreviousTab::catalog/product/previous_tab.phtml" group="detailed_info">
                 <arguments>
                     <argument translate="true" name="title" xsi:type="string">Previous</argument>
                 </arguments>

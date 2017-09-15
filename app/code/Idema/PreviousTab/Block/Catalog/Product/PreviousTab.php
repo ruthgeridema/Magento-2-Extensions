@@ -64,44 +64,15 @@ class PreviousTab extends \Magento\Framework\View\Element\Template
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product $product
+     * @param $product
      * @return string
      */
-    public function getProductPrice(\Magento\Catalog\Model\Product $product)
+    public function getProductPrice($product)
     {
-        return $this->getProductPriceHtml(
+        return $this->abstractProduct->getProductPriceHtml(
             $product,
             \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE,
             \Magento\Framework\Pricing\Render::ZONE_ITEM_LIST
         );
-    }
-
-    /**
-     * Return HTML block with tier price
-     *
-     * @param \Magento\Catalog\Model\Product $product
-     * @param string $priceType
-     * @param string $renderZone
-     * @param array $arguments
-     * @return string
-     */
-    public function getProductPriceHtml(
-        \Magento\Catalog\Model\Product $product,
-        $priceType,
-        $renderZone = \Magento\Framework\Pricing\Render::ZONE_ITEM_LIST,
-        array $arguments = []
-    ) {
-        if (!isset($arguments['zone'])) {
-            $arguments['zone'] = $renderZone;
-        }
-
-        /** @var \Magento\Framework\Pricing\Render $priceRender */
-        $priceRender = $this->getLayout()->getBlock('product.price.render.default');
-        $price = '';
-
-        if ($priceRender) {
-            $price = $priceRender->render($priceType, $product, $arguments);
-        }
-        return $price;
     }
 }
