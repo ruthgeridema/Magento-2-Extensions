@@ -3,6 +3,7 @@
 namespace Idema\PreviousTab\Block\Catalog\Product;
 
 use Magento\Catalog\Block\Product\AbstractProduct;
+use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Reports\Block\Product\Viewed;
@@ -57,7 +58,8 @@ class PreviousTab extends Template
         PriceCurrencyInterface $priceCurrency,
         PageFactory $pageFactory,
         AbstractProduct $abstractProduct,
-        Viewed $viewed
+        Viewed $viewed,
+        ListProduct $listProduct
     )
     {
         parent::__construct($context, $data);
