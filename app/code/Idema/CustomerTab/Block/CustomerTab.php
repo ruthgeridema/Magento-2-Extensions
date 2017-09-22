@@ -2,6 +2,7 @@
 
 namespace Idema\CustomerTab\Block;
 
+use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\View\Element\Template\Context;
@@ -32,13 +33,19 @@ class CustomerTab extends Template
     protected $priceCurrency;
 
     /**
+     * @var ListProduct $listProduct
+     */
+    protected $listProduct;
+
+    /**
      * CustomerTab constructor.
-     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param Context $context
      * @param array $data
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param ObjectManagerInterface $objectManager
      * @param PriceCurrencyInterface $priceCurrency
      * @param PageFactory $pageFactory
      * @param Viewed $viewed
+     * @param ListProduct $listProduct
      */
     public function __construct(
         Context $context,
@@ -46,7 +53,8 @@ class CustomerTab extends Template
         ObjectManagerInterface $objectManager,
         PriceCurrencyInterface $priceCurrency,
         PageFactory $pageFactory,
-        Viewed $viewed
+        Viewed $viewed,
+        ListProduct $listProduct
     )
     {
         parent::__construct($context, $data);
@@ -55,6 +63,7 @@ class CustomerTab extends Template
         $this->viewed = $viewed;
         $this->pageFactory = $pageFactory;
         $this->priceCurrency = $priceCurrency;
+        $this->listProduct = $listProduct;
     }
 
     /**
@@ -71,8 +80,7 @@ class CustomerTab extends Template
      */
     public function getAddToCartUrl($product)
     {
-        $listBlock = $this->_objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
-        return $listBlock->getAddToCartUrl($product);
+        return $this->listProduct->getAddToCartUrl($product);
     }
 
     /**

@@ -42,6 +42,11 @@ class PreviousTab extends Template
     protected $abstractProduct;
 
     /**
+     * @var ListProduct $listProduct
+     */
+    protected $listProduct;
+
+    /**
      * PreviousTab constructor.
      * @param Context $context
      * @param array $data
@@ -50,6 +55,7 @@ class PreviousTab extends Template
      * @param PageFactory $pageFactory
      * @param AbstractProduct $abstractProduct
      * @param Viewed $viewed
+     * @param ListProduct $listProduct
      */
     public function __construct(
         Context $context,
@@ -69,6 +75,7 @@ class PreviousTab extends Template
         $this->pageFactory = $pageFactory;
         $this->priceCurrency = $priceCurrency;
         $this->abstractProduct = $abstractProduct;
+        $this->listProduct = $listProduct;
     }
 
     /**
@@ -85,8 +92,7 @@ class PreviousTab extends Template
      */
     public function getAddToCartUrl($product)
     {
-        $listBlock = $this->_objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
-        return $listBlock->getAddToCartUrl($product);
+        return $this->listProduct->getAddToCartUrl($product);
     }
 
     /**
