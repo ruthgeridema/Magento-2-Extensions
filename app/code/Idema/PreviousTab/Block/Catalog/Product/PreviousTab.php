@@ -29,6 +29,15 @@ class PreviousTab extends \Magento\Framework\View\Element\Template
      */
     protected $abstractProduct;
 
+    /**
+     * PreviousTab constructor.
+     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param array $data
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param PageFactory $pageFactory
+     * @param Viewed $viewed
+     * @param AbstractProduct $abstractProduct
+     */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         array $data = [],
@@ -50,28 +59,6 @@ class PreviousTab extends \Magento\Framework\View\Element\Template
      */
     public function getLoadedProductCollection()
     {
-        //Set pagesize to 8 because of 4 per row (2 rows)
         return $this->viewed->getItemsCollection()->setPageSize(8);
-    }
-
-    /**
-     * @return string
-     */
-    public function toHtml()
-    {
-        return parent::_toHtml();
-    }
-
-    /**
-     * @param $product
-     * @return string
-     */
-    public function getProductPrice($product)
-    {
-        return $this->abstractProduct->getProductPriceHtml(
-            $product,
-            \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE,
-            \Magento\Framework\Pricing\Render::ZONE_ITEM_LIST
-        );
     }
 }

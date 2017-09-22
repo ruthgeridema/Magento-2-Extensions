@@ -13,8 +13,8 @@
     $addToCartUrl =  $listBlock->getAddToCartUrl($product);
     ?>
     <tr>
-        <td><a href="<?=$product->getProductUrl() ?>"><?=$product->getName() ?></a></td>
-        <td><?=$product->getSku() ?></td>
+        <td><a href="<?php echo $product->getProductUrl() ?>"><?php echo $product->getName() ?></a></td>
+        <td><?php echo $product->getSku() ?></td>
         <td><?=$this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(),true,false) ?></td>
         <td>
             <form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post">

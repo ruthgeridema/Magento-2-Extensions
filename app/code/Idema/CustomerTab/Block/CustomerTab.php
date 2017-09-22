@@ -1,10 +1,14 @@
 <?php
+
 namespace Idema\CustomerTab\Block;
 
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Reports\Block\Product\Viewed;
 
-
+/**
+ * Class CustomerTab
+ * @package Idema\CustomerTab\Block
+ */
 class CustomerTab extends \Magento\Framework\View\Element\Template
 {
     /**
@@ -20,13 +24,22 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
     /** @var PageFactory */
     protected $pageFactory;
 
+    /**
+     * CustomerTab constructor.
+     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param array $data
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param PageFactory $pageFactory
+     * @param Viewed $viewed
+     */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         array $data = [],
         \Magento\Framework\ObjectManagerInterface $objectManager,
         PageFactory $pageFactory,
         Viewed $viewed
-    ) {
+    )
+    {
         parent::__construct($context, $data);
 
         $this->_objectManager = $objectManager;
