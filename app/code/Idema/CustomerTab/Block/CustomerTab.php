@@ -80,7 +80,7 @@ class CustomerTab extends Template
      */
     public function getAddToCartUrl($product)
     {
-        return $this->listProduct->getAddToCartUrl($product);
+        return $this-> listProduct->getAddToCartUrl($product);
     }
 
     /**

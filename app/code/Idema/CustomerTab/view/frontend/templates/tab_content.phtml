@@ -1,14 +1,14 @@
-<table>
-    <tr>
-        <th><?php echo __('Name') ?></th>
-        <th><?php echo __('SKU') ?></th>
-        <th><?php echo __('Price') ?></th>
-        <th>&nbsp;</th>
-    </tr>
-
-    <?php
-    foreach ($block->getPreviousViewedProducts() as $product):
-        ?>
+<table class="table">
+    <thead>
+        <tr>
+            <th><?php echo __('Name') ?></th>
+            <th><?php echo __('SKU') ?></th>
+            <th><?php echo __('Price') ?></th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($block->getPreviousViewedProducts() as $product): ?>
         <tr>
             <td><a href="<?php echo $product->getProductUrl() ?>"><?php echo $product->getName() ?></a></td>
             <td><?php echo $product->getSku() ?></td>
@@ -25,6 +25,7 @@
             </td>
         </tr>
     <?php endforeach; ?>
+    </tbody>
 </table>
 
 
