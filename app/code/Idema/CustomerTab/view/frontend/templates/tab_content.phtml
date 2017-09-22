@@ -6,28 +6,25 @@
         <th>&nbsp;</th>
     </tr>
 
-    <?php foreach($block->getPreviousViewedProducts() as $product):
-
-    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-    $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
-    $addToCartUrl =  $listBlock->getAddToCartUrl($product);
-    ?>
-    <tr>
-        <td><a href="<?php echo $product->getProductUrl() ?>"><?php echo $product->getName() ?></a></td>
-        <td><?php echo $product->getSku() ?></td>
-        <td><?=$this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice(),true,false) ?></td>
-        <td>
-            <form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post">
-                <?php echo $block->getBlockHtml('formkey')?>
-                <button type="submit"
-                        title="Add to Cart"
-                        class="action tocart primary">
-                    <span><?php echo __('Add to cart') ?></span>
-                </button>
-            </form>
-        </td>
-    </tr>
-<?php endforeach; ?>
+    <?php
+    foreach ($block->getPreviousViewedProducts() as $product):
+        ?>
+        <tr>
+            <td><a href="<?php echo $product->getProductUrl() ?>"><?php echo $product->getName() ?></a></td>
+            <td><?php echo $product->getSku() ?></td>
+            <td><?php echo $block->getFormattedPrice($product); ?></td>
+            <td>
+                <form data-role="tocart-form" action="<?php echo $block->getAddToCartUrl($product); ?>" method="post">
+                    <?php echo $block->getBlockHtml('formkey') ?>
+                    <button type="submit"
+                            title="Add to Cart"
+                            class="action tocart primary">
+                        <span><?php echo __('Add to cart') ?></span>
+                    </button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
 </table>
 
 

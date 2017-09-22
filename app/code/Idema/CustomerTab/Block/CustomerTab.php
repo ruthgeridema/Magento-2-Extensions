@@ -2,6 +2,10 @@
 
 namespace Idema\CustomerTab\Block;
 
+use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Framework\View\Element\Template\Context;
+use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Reports\Block\Product\Viewed;
 
@@ -9,7 +13,7 @@ use Magento\Reports\Block\Product\Viewed;
  * Class CustomerTab
  * @package Idema\CustomerTab\Block
  */
-class CustomerTab extends \Magento\Framework\View\Element\Template
+class CustomerTab extends Template
 {
     /**
      * @var \Magento\Framework\ObjectManagerInterface
@@ -24,18 +28,23 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
     /** @var PageFactory */
     protected $pageFactory;
 
+    /** @var PriceCurrencyInterface $priceCurrency */
+    protected $priceCurrency;
+
     /**
      * CustomerTab constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param array $data
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param PriceCurrencyInterface $priceCurrency
      * @param PageFactory $pageFactory
      * @param Viewed $viewed
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
+        Context $context,
         array $data = [],
-        \Magento\Framework\ObjectManagerInterface $objectManager,
+        ObjectManagerInterface $objectManager,
+        PriceCurrencyInterface $priceCurrency,
         PageFactory $pageFactory,
         Viewed $viewed
     )
@@ -45,6 +54,7 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
         $this->_objectManager = $objectManager;
         $this->viewed = $viewed;
         $this->pageFactory = $pageFactory;
+        $this->priceCurrency = $priceCurrency;
     }
 
     /**
@@ -54,4 +64,24 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
     {
         return $this->viewed->getItemsCollection()->setPageSize(10);
     }
+
+    /**
+     * @param $product
+     * @return string
+     */
+    public function getAddToCartUrl($product)
+    {
+        $listBlock = $this->_objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+        return $listBlock->getAddToCartUrl($product);
+    }
+
+    /**
+     * @param $product
+     * @return string
+     */
+    public function getFormattedPrice($product)
+    {
+        return $this->priceCurrency->convertAndFormat($product->getFinalPrice());
+    }
+
 }

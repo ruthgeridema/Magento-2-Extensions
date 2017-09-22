@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="Idema_PreviousTab/css/previous_tab.css"/>
     </head>
     <body>
         <referenceBlock name="product.info.details">
-            <block name="idema_previoustab.previoustab" class="Idema\PreviousTab\Block\Catalog\Product\PreviousTab" after="reviews.tab" cacheable="false"  template="Idema_PreviousTab::catalog/product/previous_tab.phtml" group="detailed_info">
+            <block name="idema_previoustab.previoustab" class="Idema\PreviousTab\Block\Catalog\Product\PreviousTab"
+                   after="reviews.tab" cacheable="false"
+                   template="Idema_PreviousTab::catalog/product/previous_tab.phtml" group="detailed_info">
                 <arguments>
                     <argument translate="true" name="title" xsi:type="string">Previous</argument>
                 </arguments>
